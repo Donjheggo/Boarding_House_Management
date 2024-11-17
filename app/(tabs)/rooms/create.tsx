@@ -5,13 +5,13 @@ import { Label } from "~/components/ui/label";
 import { useState } from "react";
 import { CreateRoom } from "~/lib/actions/rooms";
 import { Button } from "~/components/ui/button";
-import type { CreateFormT } from "~/lib/actions/rooms";
+import type { CreateFormRoomT } from "~/lib/actions/rooms";
 import { useRouter } from "expo-router";
 
 export default function Screen() {
   const router = useRouter();
   const [isLoading, setLoading] = useState<boolean>(false);
-  const [form, setForm] = useState<CreateFormT>({
+  const [form, setForm] = useState<CreateFormRoomT>({
     room_number: 0,
     bed_number: 0,
     rent: 0,

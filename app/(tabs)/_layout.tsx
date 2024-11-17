@@ -28,12 +28,31 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="tenants"
+        name="tenants/index"
         options={{
-          title: "Tenant",
-          tabBarIcon: ({ color }) => <User size={28} color={color} />,
+          title: "Tenants",
+          tabBarIcon: ({ color }) => <Bed size={28} color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="tenants/create"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="tenants/[id]/update"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="tenants/[id]/delete"
+        options={{
+          href: null,
+        }}
+      />
+
       <Tabs.Screen
         name="rooms/index"
         options={{

@@ -2,7 +2,7 @@ import { supabase } from "../supabase";
 import { Alert } from "react-native";
 import { UpdateFormT } from "~/app/(tabs)/rooms/[id]/update";
 
-export type CreateFormT = {
+export type CreateFormRoomT = {
   room_number: number;
   bed_number: number;
   rent: number;
@@ -29,7 +29,7 @@ export async function GetAllRooms() {
   }
 }
 
-export async function CreateRoom(form: CreateFormT) {
+export async function CreateRoom(form: CreateFormRoomT) {
   try {
     const { error } = await supabase
       .from("rooms")
