@@ -182,3 +182,24 @@ export async function CountTotalTenants() {
     }
   }
 }
+
+export async function GetTenantsByRoomId(room_id: string) {
+  try {
+    const { error, data } = await supabase
+      .from("tenants")
+      .select("*")
+      .eq("room_id", room_id);
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert("Error", error.message);
+      return [];
+    }
+  }
+}

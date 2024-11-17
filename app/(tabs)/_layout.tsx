@@ -78,6 +78,12 @@ export default function TabLayout() {
           href: null,
         }}
       />
+      <Tabs.Screen
+        name="rooms/[id]/tenants"
+        options={{
+          href: null,
+        }}
+      />
 
       <Tabs.Screen
         name="payments/index"
