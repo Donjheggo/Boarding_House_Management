@@ -9,7 +9,7 @@ export default function PaymentCard({ item }: { item: PaymentsT }) {
     <View className="p-5 border bg-primary rounded-xl">
       <View className="flex flex-row justify-between">
         <View className="flex flex-col">
-          <Text className="text-white text-xl">Room {item.tenant_id.name}</Text>
+          <Text className="text-white text-xl">{item.tenant_id.name}</Text>
           <Text className="text-white text-xl">
             Room {item.tenant_id.room_id.room_number}
           </Text>

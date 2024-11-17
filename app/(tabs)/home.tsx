@@ -87,8 +87,6 @@ export default function Screen() {
     },
   ];
 
-  console.log("Data: ", data);
-
   return (
     <SafeAreaView className="h-full">
       <View className="p-5">
