@@ -1,5 +1,5 @@
 import { Tabs, Redirect } from "expo-router";
-import { User, Home, Bed, HandCoins} from "lucide-react-native";
+import { User, Home, Bed, HandCoins } from "lucide-react-native";
 import { useAuth } from "~/context/auth-context";
 
 export default function TabLayout() {
@@ -35,10 +35,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="rooms"
+        name="rooms/index"
         options={{
           title: "Rooms",
           tabBarIcon: ({ color }) => <Bed size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="rooms/create"
+        options={{
+          href: null,
         }}
       />
 

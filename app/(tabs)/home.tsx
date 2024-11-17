@@ -28,7 +28,6 @@ export default function Screen() {
           />
         </View>
         <View>
-          <Text className="p-2 font-medium text-2xl text-primary">Home</Text>
           <FlatList
             data={homeCardData}
             renderItem={renderCards}
