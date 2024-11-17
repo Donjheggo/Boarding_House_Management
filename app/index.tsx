@@ -14,9 +14,11 @@ export default function Screen() {
         /> */}
         <Text>Logo Here</Text>
 
-        <Text className="font-semibold text-xl text-center text-white opacity-80">
-          A Style for Every Space. Living, Dining, Bedroom, Office Furniture and
-          more.
+        <Text className="font-semibold text-xl text-center ">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo ex
+          natus neque quae debitis ea officia! Eaque enim nesciunt saepe
+          quibusdam repudiandae? Dolor libero ad eveniet hic, accusantium
+          numquam.
         </Text>
 
         <Pressable
