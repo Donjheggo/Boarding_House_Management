@@ -3,20 +3,27 @@ import { Text } from "~/components/ui/text";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { useCallback, useState } from "react";
-import { CreateRoom } from "~/lib/actions/rooms";
 import { Button } from "~/components/ui/button";
-import type { CreateFormT } from "~/lib/actions/rooms";
+import { UpdateRoom } from "~/lib/actions/rooms";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useLocalSearchParams } from "expo-router";
 import { GetRoomById } from "~/lib/actions/rooms";
-import { RoomsT } from ".";
+import { RoomsT } from "..";
+
+export type UpdateFormT = {
+  id: string;
+  room_number: number;
+  bed_number: number;
+  rent: number;
+};
 
 export default function Screen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<RoomsT>();
-  const [form, setForm] = useState<CreateFormT>({
+  const [form, setForm] = useState<UpdateFormT>({
+    id: id as string,
     room_number: 0,
     bed_number: 0,
     rent: 0,
@@ -27,6 +34,12 @@ export default function Screen() {
       const fetchData = async () => {
         const data = await GetRoomById(id as string);
         if (data) setData(data);
+        setForm({
+          id: id as string,
+          room_number: data.room_number,
+          bed_number: data.bed_number,
+          rent: data.rent,
+        });
       };
       fetchData();
     }, [])
@@ -35,7 +48,7 @@ export default function Screen() {
   const handleUpdate = async () => {
     setLoading(true);
     try {
-      await CreateRoom(form);
+      await UpdateRoom(form);
       setLoading(false);
       router.push("/(tabs)/rooms");
     } catch (error) {
@@ -47,7 +60,7 @@ export default function Screen() {
     <SafeAreaView className="h-full">
       <View className="p-5">
         <Text className="text-center text-2xl font-bold">
-          Rooms Information
+          Update Rooms Information
         </Text>
         <View>
           <Label nativeID="room_number" className="pb-1">
@@ -98,7 +111,7 @@ export default function Screen() {
           variant="default"
           className="mt-5"
         >
-          <Text>Create</Text>
+          <Text>Update</Text>
         </Button>
       </View>
     </SafeAreaView>

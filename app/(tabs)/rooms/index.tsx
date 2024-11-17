@@ -46,6 +46,7 @@ export default function Screen() {
             data={rooms}
             renderItem={({ item }) => <RoomCard item={item} />}
             keyExtractor={(_, index) => `${index}`}
+            ItemSeparatorComponent={() => <View className="h-2" />}
           />
         </View>
       </View>

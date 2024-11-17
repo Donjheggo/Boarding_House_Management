@@ -6,8 +6,6 @@ import { useCallback, useState } from "react";
 import { Tables } from "~/database.types";
 import { CountTenantByRoomId } from "~/lib/actions/tenant";
 import { Link } from "expo-router";
-import { Button } from "../ui/button";
-import { TouchableOpacity } from "react-native";
 import { Pen, Trash } from "lucide-react-native";
 
 export type Tenants = Tables<"tenants">;
@@ -43,15 +41,22 @@ export default function RoomCard({ item }: { item: RoomsT }) {
         </View>
         <View className="flex flex-row gap-4">
           <Link
-            href={{ pathname: "/(tabs)/rooms/[id]", params: { id: item.id } }}
+            href={{ pathname: "/(tabs)/rooms/[id]/update", params: { id: item.id } }}
             asChild
             className="p-2"
           >
             <Pen color="#fff" />
           </Link>
-          <View>
+          <Link
+            href={{
+              pathname: "/(tabs)/rooms/[id]/delete",
+              params: { id: item.id },
+            }}
+            asChild
+            className="p-2"
+          >
             <Trash color="#ff0000" />
-          </View>
+          </Link>
         </View>
       </View>
     </View>

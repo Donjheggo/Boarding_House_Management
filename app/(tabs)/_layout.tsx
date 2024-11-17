@@ -47,6 +47,18 @@ export default function TabLayout() {
           href: null,
         }}
       />
+      <Tabs.Screen
+        name="rooms/[id]/update"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="rooms/[id]/delete"
+        options={{
+          href: null,
+        }}
+      />
 
       <Tabs.Screen
         name="payments"

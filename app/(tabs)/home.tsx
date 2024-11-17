@@ -1,5 +1,4 @@
 import { View, SafeAreaView, FlatList } from "react-native";
-import { Text } from "~/components/ui/text";
 import { Image } from "react-native";
 import { User, Bed, HandCoins } from "lucide-react-native";
 import HomeCard from "~/components/home/home-card";
