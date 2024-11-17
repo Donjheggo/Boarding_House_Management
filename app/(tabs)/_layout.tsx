@@ -11,8 +11,8 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#7F5539",
-        tabBarInactiveTintColor: "#B08968",
+        tabBarActiveTintColor: "#03314B",
+        tabBarInactiveTintColor: "#a1cae2",
         headerShown: false,
         headerTitleStyle: {
           fontSize: 20,
@@ -28,7 +28,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="tenant"
+        name="tenants"
         options={{
           title: "Tenant",
           tabBarIcon: ({ color }) => <User size={28} color={color} />,
@@ -43,7 +43,7 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="payment"
+        name="payments"
         options={{
           title: "Payment",
           tabBarIcon: ({ color }) => <HandCoins size={28} color={color} />,
