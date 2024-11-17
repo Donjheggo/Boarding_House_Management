@@ -7,23 +7,15 @@ export default function Screen() {
   return (
     <ScrollView className="h-full bg-secondary">
       <View className="min-h-[80vh] flex justify-center items-center gap-5 p-5">
-        {/* <Image
-          source={require("../assets/images/index.png")}
+        <Image
+          source={require("../assets/images/logo.png")}
           resizeMode="contain"
-          style={{ width: 300, height: 160 }}
-        /> */}
-        <Text>Logo Here</Text>
-
-        <Text className="font-semibold text-xl text-center ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nemo ex
-          natus neque quae debitis ea officia! Eaque enim nesciunt saepe
-          quibusdam repudiandae? Dolor libero ad eveniet hic, accusantium
-          numquam.
-        </Text>
+          style={{ width: 300, height: 300 }}
+        />
 
         <Pressable
           onPress={() => router.push("/(auth)/sign-in")}
-          className="w-full"
+          className="w-full border rounded-xl"
         >
           <View className="w-full text-center rounded-lg p-5 items-center flex justify-center overflow-hidden">
             <Text className="text-xl ">Get Started</Text>

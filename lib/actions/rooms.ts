@@ -123,3 +123,43 @@ export async function DeleteRoomById(id: string) {
     }
   }
 }
+
+export async function CountTotalRooms() {
+  try {
+    const { error, count } = await supabase
+      .from("rooms")
+      .select("*", { count: "exact", head: true });
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+
+    return count || 0;
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+  }
+}
+
+export async function CountTotalBeds() {
+  try {
+    const { data, error } = await supabase.from("rooms").select("bed_number");
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+
+    const totalBeds = data.reduce((sum, room) => sum + room.bed_number, 0);
+    return totalBeds;
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+  }
+  // return 999;
+}

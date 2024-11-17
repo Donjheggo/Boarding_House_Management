@@ -30,9 +30,7 @@ const SignIn = () => {
 
   return (
     <View className="w-full flex flex-col gap-3">
-      <Text className="text-center font-semibold text-2xl text-secondary">
-        Sign in
-      </Text>
+      <Text className="text-center font-semibold text-2xl">Sign in</Text>
       <View>
         <Label nativeID="email" className="pb-1">
           Email
@@ -82,12 +80,9 @@ const SignIn = () => {
       >
         <Text>Sign in</Text>
       </Button>
-      <Text className="dark:text-secondary">
+      <Text>
         Don't have an account?
-        <Link href="/sign-up" className="text-primary-foreground">
-          {" "}
-          Sign up
-        </Link>
+        <Link href="/sign-up"> Sign up</Link>
       </Text>
     </View>
   );

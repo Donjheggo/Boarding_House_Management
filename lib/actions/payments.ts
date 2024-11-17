@@ -126,3 +126,23 @@ export async function DeletePaymentById(id: string) {
     }
   }
 }
+
+export async function CountTotalPayments() {
+  try {
+    const { error, count } = await supabase
+      .from("payments")
+      .select("*", { count: "exact", head: true });
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+
+    return count || 0;
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+  }
+}

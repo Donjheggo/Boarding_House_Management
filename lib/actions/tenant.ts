@@ -162,3 +162,23 @@ export async function DeleteTenantById(id: string) {
     }
   }
 }
+
+export async function CountTotalTenants() {
+  try {
+    const { error, count } = await supabase
+      .from("tenants")
+      .select("*", { count: "exact", head: true });
+
+    if (error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+
+    return count || 0;
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert("Error", error.message);
+      return 0;
+    }
+  }
+}

@@ -34,7 +34,7 @@ const SignUp = () => {
 
   return (
     <View className="w-full flex flex-col gap-3">
-      <Text className="text-center font-semibold text-2xl text-secondary">
+      <Text className="text-center font-semibold text-2xl">
         Create an Account
       </Text>
       <View>
@@ -86,12 +86,9 @@ const SignUp = () => {
       >
         <Text className="text-white">Create Account</Text>
       </Button>
-      <Text className="dark:text-secondary">
+      <Text>
         Already have an account?
-        <Link href="/sign-in" className="text-primary-foreground">
-          {" "}
-          Sign in
-        </Link>
+        <Link href="/sign-in"> Sign in</Link>
       </Text>
     </View>
   );
