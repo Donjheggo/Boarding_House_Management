@@ -1,34 +1,27 @@
 import { View } from "react-native";
 import { Text } from "../ui/text";
-import type { RoomsT } from "~/app/(tabs)/rooms";
+import { Tables } from "~/database.types";
 import { Link } from "expo-router";
-import { Pen, Trash } from "lucide-react-native";
+import { Trash } from "lucide-react-native";
 
-export default function TenantCard({ item }: { item: Tenants }) {
+export default function PaymentCard({ item }: { item: PaymentsT }) {
   return (
     <View className="p-5 border bg-primary rounded-xl">
       <View className="flex flex-row justify-between">
         <View className="flex flex-col">
-          <Text className="text-white text-xl">{item.name}</Text>
+          <Text className="text-white text-xl">Room {item.tenant_id.name}</Text>
           <Text className="text-white text-xl">
-            Room {item.room_id.room_number}
+            Room {item.tenant_id.room_id.room_number}
+          </Text>
+          <Text className="text-white text-xl">
+            {new Date(item.date).toLocaleDateString()}
           </Text>
         </View>
 
         <View className="flex flex-row gap-4">
           <Link
             href={{
-              pathname: "/(tabs)/tenants/[id]/update",
-              params: { id: item.id },
-            }}
-            asChild
-            className="p-2"
-          >
-            <Pen color="#fff" />
-          </Link>
-          <Link
-            href={{
-              pathname: "/(tabs)/tenants/[id]/delete",
+              pathname: "/(tabs)/payments/[id]/delete",
               params: { id: item.id },
             }}
             asChild
@@ -42,7 +35,8 @@ export default function TenantCard({ item }: { item: Tenants }) {
   );
 }
 
-export type Tenants = {
+type RoomT = Tables<"rooms">;
+type TenantT = {
   address: string;
   created_at: string;
   date_of_rent: string;
@@ -50,5 +44,11 @@ export type Tenants = {
   id: string;
   mobile_number: string;
   name: string;
-  room_id: RoomsT;
+  room_id: RoomT;
+};
+export type PaymentsT = {
+  created_at: string;
+  date: string;
+  id: string;
+  tenant_id: TenantT;
 };

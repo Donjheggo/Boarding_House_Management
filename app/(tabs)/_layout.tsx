@@ -31,7 +31,7 @@ export default function TabLayout() {
         name="tenants/index"
         options={{
           title: "Tenants",
-          tabBarIcon: ({ color }) => <Bed size={28} color={color} />,
+          tabBarIcon: ({ color }) => <User size={28} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -80,10 +80,24 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="payments"
+        name="payments/index"
         options={{
           title: "Payment",
           tabBarIcon: ({ color }) => <HandCoins size={28} color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name="payments/create"
+        options={{
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="payments/[id]/delete"
+        options={{
+          href: null,
         }}
       />
     </Tabs>

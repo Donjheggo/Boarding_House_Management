@@ -1,12 +1,18 @@
 import { supabase } from "../supabase";
 import { Alert } from "react-native";
+import { UpdateFormT } from "~/app/(tabs)/rooms/[id]/update";
 
-export async function GetAllTenants() {
+export type CreatePaymentFormT = {
+  tenant_id: string;
+  date: Date;
+};
+
+export async function GetAllPayments() {
   try {
     const { error, data } = await supabase
-      .from("tenants")
-      .select(`*, room_id(*)`)
-      .order("name", { ascending: true });
+      .from("payments")
+      .select("*, tenant_id(*, room_id(*))")
+      .order("date", { ascending: true });
 
     if (error) {
       Alert.alert("Error", error.message);
@@ -22,48 +28,14 @@ export async function GetAllTenants() {
   }
 }
 
-export async function CountTenantByRoomId(room_id: string) {
-  try {
-    const { error, data } = await supabase
-      .from("tenants")
-      .select("*")
-      .eq("room_id", room_id);
-
-    if (error) {
-      Alert.alert("Error", error.message);
-      return 0;
-    }
-
-    return data.length || 0;
-  } catch (error) {
-    if (error instanceof Error) {
-      Alert.alert("Error", error.message);
-      return 0;
-    }
-  }
-}
-
-export type CreateTenantFormT = {
-  name: string;
-  email: string;
-  address: string;
-  date_of_rent: Date;
-  mobile_number: string;
-  room_id: string;
-};
-
-export async function CreateTenant(form: CreateTenantFormT) {
+export async function CreatePayment(form: CreatePaymentFormT) {
   try {
     const { error } = await supabase
-      .from("tenants")
+      .from("payments")
       .insert([
         {
-          name: form.name,
-          email: form.email,
-          address: form.address,
-          date_of_rent: form.date_of_rent,
-          mobile_number: form.mobile_number,
-          room_id: form.room_id,
+          tenant_id: form.tenant_id,
+          date: form.date,
         },
       ])
       .select();
@@ -82,11 +54,11 @@ export async function CreateTenant(form: CreateTenantFormT) {
   }
 }
 
-export async function GetTenantById(id: string) {
+export async function GetPaymentById(id: string) {
   try {
     const { error, data } = await supabase
-      .from("tenants")
-      .select("*")
+      .from("payments")
+      .select(`*, tenant_id(*)`)
       .eq("id", id)
       .single();
 
@@ -104,28 +76,20 @@ export async function GetTenantById(id: string) {
   }
 }
 
-export type UpdateTenantFormT = {
+export type UpdatePaymentFormT = {
   id: string;
-  name: string;
-  email: string;
-  address: string;
-  date_of_rent: Date;
-  mobile_number: string;
-  room_id: string;
+  tenant_id: string;
+  date: Date;
 };
 
-export async function UpdateTenant(form: UpdateTenantFormT) {
+export async function UpdatePayment(form: UpdatePaymentFormT) {
   try {
     const { error } = await supabase
-      .from("tenants")
+      .from("payments")
       .update([
         {
-          name: form.name,
-          email: form.email,
-          address: form.address,
-          date_of_rent: form.date_of_rent,
-          mobile_number: form.mobile_number,
-          room_id: form.room_id,
+          tenant_id: form.tenant_id,
+          date: form.date,
         },
       ])
       .eq("id", form.id)
@@ -145,9 +109,9 @@ export async function UpdateTenant(form: UpdateTenantFormT) {
   }
 }
 
-export async function DeleteTenantById(id: string) {
+export async function DeletePaymentById(id: string) {
   try {
-    const { error } = await supabase.from("tenants").delete().eq("id", id);
+    const { error } = await supabase.from("payments").delete().eq("id", id);
 
     if (error) {
       Alert.alert("Error", error.message);

@@ -9,6 +9,35 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      payments: {
+        Row: {
+          created_at: string
+          date: string
+          id: string
+          tenant_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          id?: string
+          tenant_id?: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          id?: string
+          tenant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_tenant_id_fkey"
+            columns: ["tenant_id"]
+            isOneToOne: false
+            referencedRelation: "tenants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       rooms: {
         Row: {
           bed_number: number
