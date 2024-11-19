@@ -1,4 +1,10 @@
-import { View, FlatList, SafeAreaView } from "react-native";
+import {
+  View,
+  FlatList,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+} from "react-native";
 import { Text } from "~/components/ui/text";
 import { useLocalSearchParams } from "expo-router";
 import { GetTenantsByRoomId } from "~/lib/actions/tenant";
@@ -51,7 +57,12 @@ export default function Screen() {
   };
 
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       <View className="p-5">
         <Text className="text-center text-2xl font-bold">
           Room {room?.room_number} Tenants

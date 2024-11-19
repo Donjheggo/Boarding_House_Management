@@ -2,7 +2,7 @@ import { DeleteTenantById } from "~/lib/actions/tenant";
 import { Button } from "~/components/ui/button";
 import { useFocusEffect, useRouter } from "expo-router";
 import { Text } from "react-native";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, View, Platform, StatusBar } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { GetTenantById } from "~/lib/actions/tenant";
 import { useCallback, useState } from "react";
@@ -33,7 +33,12 @@ export default function Screen() {
   );
 
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       <View className="p-5">
         <Text className="font-bold text-2xl">
           Are you sure to delete Tenant {tenant?.name}?

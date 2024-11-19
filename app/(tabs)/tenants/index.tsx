@@ -1,4 +1,10 @@
-import { View, SafeAreaView, ScrollView, FlatList } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  FlatList,
+  Platform,
+  StatusBar,
+} from "react-native";
 import { Text } from "~/components/ui/text";
 import { Link } from "expo-router";
 import { Plus } from "lucide-react-native";
@@ -22,7 +28,12 @@ export default function Screen() {
   );
 
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       <View className="p-5">
         <Link href={{ pathname: "/(tabs)/tenants/create" }}>
           <View
@@ -34,7 +45,7 @@ export default function Screen() {
           >
             <Text className="text-2xl font-bold">Tenant Management</Text>
             <View className="ml-auto">
-              <Plus />
+              <Plus color="#03314B" />
             </View>
           </View>
         </Link>

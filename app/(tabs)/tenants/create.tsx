@@ -12,6 +12,7 @@ import {
   Platform,
   KeyboardAvoidingView,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import { Text } from "~/components/ui/text";
 import { Input } from "~/components/ui/input";
@@ -61,7 +62,12 @@ export default function Screen() {
   );
 
   return (
-    <SafeAreaView className="h-full" style={{ flex: 1 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"

@@ -1,7 +1,7 @@
 import { Button } from "~/components/ui/button";
 import { useFocusEffect, useRouter } from "expo-router";
 import { Text } from "react-native";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, View, Platform, StatusBar } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { GetPaymentById } from "~/lib/actions/payments";
 import { useCallback, useState } from "react";
@@ -33,7 +33,12 @@ export default function Screen() {
   );
 
   return (
-    <SafeAreaView className="h-full">
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       <View className="p-5">
         <Text className="font-bold text-2xl">
           Are you sure to delete Payment {payments?.tenant_id.name}?
